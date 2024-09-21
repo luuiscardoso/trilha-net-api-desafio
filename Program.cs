@@ -11,6 +11,9 @@ builder.Services.AddDbContext<OrganizadorContext>(options =>
 builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
+string conexao = builder.Configuration.GetConnectionString("ConexaoPadrao");
+builder.Services.AddDbContext<OrganizadorContext>(options => options.UseSqlServer(conexao));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
